@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+    <title>Weather App</title>
+</head>
+<body>
+    <section class="home__form">
+        <h1>Enter Location:</h1>
+        <form method="POST" action="{{ url_for('index') }}">
+            <div class="form__field">
+                <input type="text" name="location">
+            </div>
+            <div>
+                <button>Get Weather</submit>
+            </div>
+        </form>
+        {% if weather %}
+        <div class="weather__contasiner">
+            <h1>{{ weather['name'] }}</h1>
+            <h3>{{ weather['sys']['country'] }}</h3>
+            <div class="row">
+                <span>Weather</span>
+                <p>{{ weather['weather'][0]['main'] }}</p>
+            </div>
+            <div class="row">
+                <span>Desciption</span>
+                <p>{{ weather['weather'][0]['description'] }}</p>
+            </div>
+            <div class="row">
+                <span>Icon</span>
+                <img src="http://openweathermap.org/img/w/{{ weather['weather'][0]['icon'] }}.png" />
+            </div>
+            <div class="row">
+                <span>Temp</span>
+                <p>{{ weather['main']['temp'] }} &#8451; </p>
+            </div>
+            <div class="row">
+                <span>Pressure</span>
+                <p>{{ weather['main']['pressure'] }}</p>
+            </div>
+            <div class="row">
+                <span>Humidity</span>
+                <p>{{ weather['main']['humidity'] }}</p>
+            </div>
+            <div class="row">
+                <span>Wind Speed</span>
+                <p>{{ weather['wind']['speed'] }}</p>
+            </div>
+            
+        </div> 
+        {% endif %}
+    </section>
+
+</body>
+</html>
